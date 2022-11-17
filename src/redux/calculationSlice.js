@@ -10,10 +10,17 @@ import { createSlice } from "@reduxjs/toolkit";
     },
     reducers: {
         addNumber: (state, action) => {
-            state.number += (action.payload)
-           
+            // if(state.result =''){
+            //     state.number += (action.payload)
+            // }else{
+            //     state.number = state.result 
+            //     state.number+= action.payload
+            // }
+            
+           state.number += action.payload
         },
         addResult: (state,action) => {
+            
             state.result = (action.payload);
             state.history.push(`${state.number} = ${state.result}`)
         },
@@ -22,13 +29,13 @@ import { createSlice } from "@reduxjs/toolkit";
             state.result = '';
             
         },
-        // addHistory: () => {
-
-        // }
+        handleDel: (state) => {
+           state.number = state.number.slice(0,-1);   
+        }
     }
 
 }) 
-export const  {addNumber,addResult, clearCalc} = calculationSlice.actions
+export const  {addNumber,addResult, clearCalc,handleDel} = calculationSlice.actions
 // console.log(calculationSlice);
 
 export default calculationSlice.reducer;

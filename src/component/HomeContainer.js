@@ -5,26 +5,28 @@ import './HomeContainer.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { NumberSelector,ResultSelector, HistorySelector } from '../redux/selector';
 import calculationSlice from '../redux/calculationSlice'
-import  {addNumber,addResult, clearCalc} from '../redux/calculationSlice'
+import  {addNumber,addResult, clearCalc,handleDel} from '../redux/calculationSlice'
 
 
 export default function HomeContainer() {  
     const [openHis,setOpenHis] = useState(false)
+    const [checkDel,setCheckDel] = useState(false)
     const dispatch = useDispatch();
     const number = useSelector(NumberSelector);
     const results = useSelector(ResultSelector);
     const history = useSelector(HistorySelector)
     
     const handleResult = (e) =>{
-      
             dispatch(addResult(eval(number)))
-       
     }
     const handleClear = () =>{
         dispatch(clearCalc())
     }
     const handleHis = () =>{
         setOpenHis(!openHis)
+    }
+    const handleDelete = () =>{
+        dispatch(handleDel(number))
     }
   return (
     <div className= "homecontainer">
@@ -37,6 +39,7 @@ export default function HomeContainer() {
                 handleResult = {handleResult} 
                 handleClear = {handleClear}
                 handleHis = {handleHis}
+                handleDelete = {handleDelete}
                 />
                 <Calculation 
                 

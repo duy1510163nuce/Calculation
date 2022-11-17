@@ -5,13 +5,13 @@ import  {addNumber,addResult, clearCalc} from '../../redux/calculationSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Number(props) {
-  const { handleResult,handleClear,handleHis} = props
+  const { handleResult,handleClear,handleHis,handleDelete} = props
   const dispatch = useDispatch();
   // console.log(addNumber);
   return (
     <div className="number">  
         <button className="num" value="c"  onClick={() => handleClear()}>C</button>
-        <button className="num " value="+-"   onClick={() => dispatch(addNumber(7))}>+-</button>
+        <button className="num " value="+-"   onClick={() => handleDelete()}>Del</button>
         <button className="num " value="%"   onClick={() => dispatch(addNumber())}>%</button>
         <button className="num " value="7"  onClick={() => dispatch(addNumber(7))}>7</button>
         <button className="num " value="8"   onClick={() => dispatch(addNumber(8))}>8</button>
