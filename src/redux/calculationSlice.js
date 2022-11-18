@@ -22,7 +22,12 @@ import { createSlice } from "@reduxjs/toolkit";
         addResult: (state,action) => {
             
             state.result = (action.payload);
-            state.history.push(`${state.number} = ${state.result}`)
+            if(state.number == ''){
+                state.history = ['khong co lich su nao het']
+            }else{
+                state.history.pop('khong co lich su nao het')
+                state.history.push(`${state.number} = ${state.result}`)
+            }
         },
         clearCalc: (state,action) => {
             state.number = '';
@@ -36,7 +41,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 }) 
 export const  {addNumber,addResult, clearCalc,handleDel} = calculationSlice.actions
-// console.log(calculationSlice);
+
 
 export default calculationSlice.reducer;
 
